@@ -1,2 +1,8 @@
 <h2><%= @student["name"] %></h2>
 <%= render 'form' %>
+
+<% @statuses.each do |status| %>
+<p><%= status.github_id %> </p>
+<p><%= status.color %> </p>
+<p><%= status.body %> </p>
+<% end %>
