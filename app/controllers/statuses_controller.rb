@@ -3,9 +3,9 @@ class StatusesController < ApplicationController
       @students = HTTParty.get("http://api.wdidc.org/students")
   end
   def show
-    @student = HTTParty.get("http://api.wdidc.org/students/#{params[:github_id]}").body
+    @status = Status.new
+    @student = JSON.parse(HTTParty.get("http://api.wdidc.org/students/#{params[:github_id]}").body)
   end
-
   def create
 
   end

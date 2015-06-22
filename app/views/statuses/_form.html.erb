@@ -1,0 +1,5 @@
+<%= form_for @status do |f| %>
+  <%= f.hidden_field :github_id, value: params[:github_id] %>
+  <%= f.label :color %>
+  <%= f.label :body %>
+<% end %>
