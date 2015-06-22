@@ -2,7 +2,7 @@
 <%= render 'form' %>
 
 <% @statuses.each do |status| %>
-<p><%= status.github_id %> </p>
-<p><%= status.color %> </p>
+<p style='background:<%= status.color%>'><%= status.created_at.strftime("%d %b %y") %></p>
 <p><%= status.body %> </p>
+<hr>
 <% end %>
