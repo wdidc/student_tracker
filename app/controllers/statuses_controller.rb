@@ -3,7 +3,7 @@ class StatusesController < ApplicationController
       @students = HTTParty.get("http://api.wdidc.org/students")
   end
   def show
-    @statuses = Status.where(github_id: params[:github_id])
+    @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
     @status = Status.new
     @student = JSON.parse(HTTParty.get("http://api.wdidc.org/students/#{params[:github_id]}").body)
   end
