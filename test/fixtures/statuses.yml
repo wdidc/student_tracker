@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  color: 
+  github_id: MyString
+  integer,: MyString
+  body: MyString
+
+two:
+  color: 
+  github_id: MyString
+  integer,: MyString
+  body: MyString
