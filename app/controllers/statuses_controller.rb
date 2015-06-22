@@ -14,6 +14,7 @@ class StatusesController < ApplicationController
   end
 
   def update
+    @status = Status.find(params[:id])
     # need to be able to query for status you're updating
     @status.update(status_params)
     if @status.save
@@ -22,6 +23,7 @@ class StatusesController < ApplicationController
   end
 
   def destroy
+    @status = Status.find(params[:id])
     # need to be able to query for status you're deletings
     @status.destroy
 
