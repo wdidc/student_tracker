@@ -1,14 +1,9 @@
 class StatusesController < ApplicationController
   def index
-    @students = HTTParty.get("http://api.wdidc.org/students")
+      @students = HTTParty.get("http://api.wdidc.org/students")
+  end
+  def show
+    @student = HTTParty.get("http://api.wdidc.org/students/#{params[:github_id]}").body
   end
 
-  def create
-
-  end
-
-  private
-  def status_params
-
-  end
 end
