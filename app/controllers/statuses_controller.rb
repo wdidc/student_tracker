@@ -7,14 +7,23 @@ class StatusesController < ApplicationController
   end
 
   def create
-
+    @status = Status.new(status_params)
+    if @status.save
+      redirect_to @student
+    end
   end
 
   def update
-
+    # need to be able to query for status you're updating
+    @status.update(status_params)
+    if @status.save
+      redirect_to @student
+    end
   end
 
   def destroy
+    # need to be able to query for status you're deletings
+    @status.destroy
 
   end
   private
