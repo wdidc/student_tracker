@@ -1,11 +1,6 @@
 class StatusesController < ApplicationController
   def index
       @students = Student.all
-      @students_status = []
-      @students.each do |student|
-        stat = Status.where(github_id: student["id"]).last
-        @students_status << [student, stat]
-      end
   end
   def show
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
