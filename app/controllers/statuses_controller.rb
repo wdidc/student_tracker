@@ -40,7 +40,11 @@ class StatusesController < ApplicationController
   def authenticate
     token = request.env['omniauth.auth'][:credentials][:token]
     session[:token] = token
-    redirect_to root_path
+    if authorize
+      redirect_to root_path
+    else
+      error json:{error: "not authorized"}
+    end
   end
   private
   def status_params
