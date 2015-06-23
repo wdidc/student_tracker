@@ -1,5 +1,5 @@
 <%= form_for @status do |f| %>
-  <%= f.hidden_field :github_id, value: params[:github_id] %>
+  <%= f.hidden_field :github_id, value: @status["github_id"]%>
   <%= f.text_area :body %>
   <%= f.select :color, [["red", "red"], ["yellow", "yellow"], ["green","green"]] %>
   <%= f.submit %>
