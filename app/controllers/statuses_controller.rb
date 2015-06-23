@@ -1,6 +1,6 @@
 class StatusesController < ApplicationController
   def index
-      @students = HTTParty.get("http://api.wdidc.org/students")
+    @students = HTTParty.get("http://api.wdidc.org/students")
   end
   def show
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
@@ -35,6 +35,12 @@ class StatusesController < ApplicationController
     @status.destroy
     redirect_to "/#{gh}"
 
+  end
+
+  def authenticate
+    token = request.env['omniauth.auth'][:credentials][:token]
+    session[:token] = token
+    redirect_to root_path
   end
   private
   def status_params
