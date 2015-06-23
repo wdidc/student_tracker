@@ -1,3 +1,9 @@
-<% @students.each do |student| %>
-<p><a href="/<%= student["github_user_id"]%>"><%= student["name"] %></a></p>
+<% @students_status.each do |student| %>
+
+	<% if student[1] %> 
+		<p style="background: <%= student[1].color %> "><a href="/<%= student[0]["github_user_id"]%>"><%= student[0]["name"] %></a></p>
+	<% else %>
+		<p><a href="/<%= student[0]["github_user_id"]%>"><%= student[0]["name"] %></a></p>
+	<% end %>	
+
 <% end %>

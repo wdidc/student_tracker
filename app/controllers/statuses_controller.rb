@@ -1,6 +1,11 @@
 class StatusesController < ApplicationController
   def index
       @students = HTTParty.get("http://api.wdidc.org/students")
+      @students_status = []
+      @students.each do |student|
+        stat = Status.where(github_id: student["id"]).last
+        @students_status << [student, stat]
+      end
   end
   def show
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
