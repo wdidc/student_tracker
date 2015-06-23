@@ -2,7 +2,9 @@
 <%= render 'form' %>
 
 <% @statuses.each do |status| %>
-<p style='background:<%= status.color%>'><%= status.created_at.strftime("%d %b %y") %></p>
-<p><%= status.body %> </p>
-<hr>
+  <div class='status'>
+    <time><%= time_ago_in_words(status.created_at) %> ago</time>
+    <p><%= status.body %> </p>
+    <div class='color <%= status.color%>'></div>
+  </div>
 <% end %>

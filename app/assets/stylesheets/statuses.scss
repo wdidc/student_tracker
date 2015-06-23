@@ -2,11 +2,66 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+*{
+  box-sizing:border-box;
+}
+
 body{
   max-width:40em;
+  padding:1em;
+  font-family: 'Helvetica Neue', sans-serif;
   margin:auto;
 }
 
 label{
   display:block;
+}
+
+.red{
+  background:#FF4136;
+}
+
+.green{
+  background:#2ECC40;
+}
+
+.yellow{
+  background:#FFDC00;
+}
+
+.status{
+  position:relative;
+  padding:.25em .5em .5em 30px;
+  border: 1px solid #eee;
+  margin-bottom:1em;
+  p{
+    margin:0;
+  }
+}
+
+.status .color{
+  height:20px;
+  width:20px;
+  position:absolute;
+  top:.25em;
+  left: .25em;
+}
+
+time{
+  font-size:.8em;
+  color:#aaa;
+  display:block;
+  margin:.25em 0 .5em 0;
+}
+
+textarea{
+  width: 100%;
+  resize: vertical;
+  font:inherit;
+  min-height:100px;
+  margin-bottom:.5em;
+}
+
+form{
+  margin-bottom:2em;
 }
