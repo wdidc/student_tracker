@@ -1,12 +1,12 @@
 class StatusesController < ApplicationController
   def index
-      @students = HTTParty.get("http://api.wdidc.org/students")
+      @students = Student.all
   end
   def show
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
     @status = Status.new
     @status.github_id = params[:github_id]
-    @student = JSON.parse(HTTParty.get("http://api.wdidc.org/students/#{params[:github_id]}").body)
+    @student = Student.find(params[:github_id])
   end
   def edit
     @status = Status.find(params[:id])
