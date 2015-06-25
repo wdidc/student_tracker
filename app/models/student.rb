@@ -8,14 +8,15 @@ class Student
 	end
 
 	def self.all
-		all = HTTParty.get("http://api.wdidc.org/students")
+		all = HTTParty.get("http://auth.wdidc.org/students.json")
 		all.map do |student|
 			Student.new({github_id: student["github_user_id"], name: student["name"]})
 		end
 	end
 
 	def self.find(id)
-		JSON.parse(HTTParty.get("http://api.wdidc.org/students/#{id}").body)
+		students = JSON.parse(HTTParty.get("http://auth.wdidc.org/students.json").body)
+		student = students.find{|student|student["github_user_id"] == id.to_i}
 	end
 
 	def color
