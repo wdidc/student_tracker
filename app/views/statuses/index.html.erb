@@ -1,4 +1,3 @@
 <% @students.each do |student| %>
-	<%= student.inspect %>
 	<p class="<%= student.color%>"><a href="/<%= student.github_id %>"><%= student.name %></a></p>
 <% end %>
