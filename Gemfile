@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+gem 'figaro'
+gem 'omniauth-github'
+gem 'omniauth'
 gem 'redcarpet'
 gem "pry"
 gem 'httparty'

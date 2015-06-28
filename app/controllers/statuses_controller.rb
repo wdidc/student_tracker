@@ -1,6 +1,6 @@
 class StatusesController < ApplicationController
   def index
-      @students = Student.all
+    @students = Student.all
   end
   def show
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
@@ -35,6 +35,16 @@ class StatusesController < ApplicationController
     @status.destroy
     redirect_to "/#{gh}"
 
+  end
+
+  def authenticate
+    token = request.env['omniauth.auth'][:credentials][:token]
+    session[:token] = token
+    if authorize
+      redirect_to root_path
+    else
+      error json:{error: "not authorized"}
+    end
   end
   private
   def status_params
