@@ -3,7 +3,7 @@
 
 <% @statuses.each do |status| %>
   <div class='status'>
-    <time><%= time_ago_in_words(status.created_at) %> ago</time>
+    <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.author %></time>
     <small>
       <%= link_to 'edit', edit_status_path(status) %> |
       <%= link_to 'delete', status_path(status), method: :delete %>
