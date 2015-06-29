@@ -13,7 +13,7 @@ class StatusesController < ApplicationController
     @student = JSON.parse(HTTParty.get("http://api.wdidc.org/students/#{@status.github_id}").body)
   end
   def create
-    @status = Status.new(status_params)
+    @status = Status.new(status_params.merge(author: session[:user]["name"]))
     if @status.save
       redirect_to "/#{@status.github_id}"
     end
@@ -22,7 +22,7 @@ class StatusesController < ApplicationController
   def update
     @status = Status.find(params[:id])
     # need to be able to query for status you're updating
-    @status.update(status_params)
+    @status.update(status_params.merge(author: session[:user]["name"]))
     if @status.save
       redirect_to "/#{@status.github_id}"
     end
