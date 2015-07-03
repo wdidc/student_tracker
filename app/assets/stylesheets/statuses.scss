@@ -32,6 +32,12 @@ label{
 
 .student-list{
   font-weight:bold;
+  small{
+    font-weight:normal;
+    font-size:.7em;
+    line-height:1.7em;
+    float:right;
+  }
   a{
     color:inherit;
     display:block;

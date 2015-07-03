@@ -20,10 +20,18 @@ class Student
 	end
 
 	def color
-    status = Status.where(github_id: self.github_id).last
-    if status
-    	return status.color
-    end
+	  status = Status.where(github_id: self.github_id).last
+	  if status
+	    return status.color
+	  end
 	end
+
+	def updated_at
+	  status = Status.where(github_id: self.github_id).last
+	  if status
+	    return status.updated_at
+	  end
+	end
+
 
 end
