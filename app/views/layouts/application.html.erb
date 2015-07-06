@@ -9,6 +9,7 @@
 </head>
 <body>
   <h1><%= link_to "~/", root_path %></h1>
+  <small>Logged in as <%= session[:user]['login'] %></small>
   <%= yield %>
 </body>
 </html>
