@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+  var yellow = $(".yellow").length
+  var green = $(".green").length
+  var red = $(".red").length
+  var list = $(".student-list")
+  if(list){
+    list.prepend( $("<div class='green summary'>"+green+"</div>") )
+    list.prepend( $("<div class='yellow summary'>"+yellow+"</div>") )
+    list.prepend( $("<div class='red summary'>"+red+"</div>") )
+  }
+})
