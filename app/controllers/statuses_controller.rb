@@ -5,6 +5,7 @@ class StatusesController < ApplicationController
   def show
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
     @attendance = get_attendance
+    @assignments = get_assignments
     @status = Status.new
     @status.github_id = params[:github_id]
     @student = Student.find(params[:github_id])
@@ -28,6 +29,20 @@ class StatusesController < ApplicationController
      end
     end
     att
+  end
+  def get_assignments
+    ass = {
+      missing_homeworks: 0
+    }
+    assignments = JSON.parse(HTTParty.get("http://api.wdidc.org/assignments/students/#{params[:github_id]}").body)
+    assignments.each do |e|
+      if e["assignment_type"] == "homework"
+	if !e["status"]
+	  ass[:missing_homeworks] += 1
+	end
+      end
+    end
+    ass
   end
   def edit
     @status = Status.find(params[:id])
