@@ -4,9 +4,30 @@ class StatusesController < ApplicationController
   end
   def show
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
+    @attendance = get_attendance
     @status = Status.new
     @status.github_id = params[:github_id]
     @student = Student.find(params[:github_id])
+  end
+  def get_attendance
+    att = {
+      tardies: 0,
+      absences: 0,
+      presences: 0
+    }
+    attendance = JSON.parse(HTTParty.get("http://api.wdidc.org/attendance/students/#{params[:github_id]}").body)
+    attendance.each do |e|
+     if e["status"] == "tardy"
+       att[:tardies] += 1
+     end
+     if e["status"] == "absent"
+       att[:absences] += 1
+     end
+     if e["status"] == "present"
+       att[:presences] += 1
+     end
+    end
+    att
   end
   def edit
     @status = Status.find(params[:id])

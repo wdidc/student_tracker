@@ -1,4 +1,8 @@
 <h2><%= @student["name"] %></h2>
+<%= @attendance[:tardies] %> tardies.
+<%= @attendance[:absences] %> absences.
+<%= @attendance[:presences] %> presences.
+<br><br>
 <%= render 'form' %>
 
 <% @statuses.each do |status| %>
