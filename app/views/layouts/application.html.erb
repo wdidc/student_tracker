@@ -9,7 +9,9 @@
 </head>
 <body>
   <h1><%= link_to "~/", root_path %></h1>
-  <small>Logged in as <%= session[:user]['login'] %></small>
+  <small>Logged in as <%= session[:user]['login'] %>
+  | <%= link_to "Recent Updates", "/recent" %>
+  </small>
   <%= yield %>
 </body>
 </html>
