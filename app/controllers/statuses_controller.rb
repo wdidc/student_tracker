@@ -70,7 +70,9 @@ class StatusesController < ApplicationController
     gh = @status.github_id
     @status.destroy
     redirect_to "/#{gh}"
-
+  end
+  def recent
+    @statuses = Status.order(:created_at)
   end
 
   def authenticate

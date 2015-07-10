@@ -1,0 +1,12 @@
+<br>
+<br>
+<% @statuses.each do |status| %>
+  <div class='status'>
+    <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.author %></time>
+    <small>
+      <strong><%= status.student["name"] %></strong>
+    </small>
+    <p><%= markdown(status.body) %> </p>
+    <div class='color <%= status.color%>'></div>
+  </div>
+<% end %>

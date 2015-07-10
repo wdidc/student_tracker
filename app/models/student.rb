@@ -1,5 +1,6 @@
 class Student
 
+        @@all = JSON.parse(HTTParty.get("http://api.wdidc.org/students").body)
 	attr_accessor :github_id, :name
 
 	def initialize(opts={})
@@ -8,14 +9,14 @@ class Student
 	end
 
 	def self.all
-		all = HTTParty.get("http://api.wdidc.org/students")
+		all = @@all
 		all.map do |student|
 			Student.new({github_id: student["github_user_id"], name: student["name"]})
 		end
 	end
 
 	def self.find(id)
-		students = JSON.parse(HTTParty.get("http://api.wdidc.org/students").body)
+		students = @@all
 		student = students.find{|student|student["github_user_id"] == id.to_i}
 	end
 
