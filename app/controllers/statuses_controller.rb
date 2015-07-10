@@ -72,7 +72,7 @@ class StatusesController < ApplicationController
     redirect_to "/#{gh}"
   end
   def recent
-    @statuses = Status.order(:created_at)
+    @statuses = Status.order(:created_at => :desc).limit(20)
   end
 
   def authenticate
