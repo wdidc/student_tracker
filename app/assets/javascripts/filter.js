@@ -1,5 +1,6 @@
 var filter = {
   listen: function(){
+    this.input.focus()
     this.input.addEventListener("keyup", function(event){
       window.location.hash = "/" + event.target.value
     }.bind(this))
@@ -30,12 +31,15 @@ var filter = {
     this.input = document.querySelector(".js-filter")
     this.input.value = window.location.hash.substr(2)
     this.input.setSelectionRange(1000,1000)
-    this.iso = new Isotope( '.js-student-list', {
-	itemSelector: 'p',
-	layoutMode: 'fitRows'
-    })
-    this.iso.$element.isotope({filter: this.filter})
-    this.listen()
+    var container = document.querySelector(".js-student-list")
+    if(container){
+      this.iso = new Isotope( '.js-student-list', {
+	  itemSelector: 'p',
+	  layoutMode: 'fitRows'
+      })
+      this.iso.$element.isotope({filter: this.filter})
+      this.listen()
+    }
   }
 }
 

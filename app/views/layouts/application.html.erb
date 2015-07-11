@@ -10,7 +10,7 @@
 <body>
   <h1>
     <%= link_to "~/", root_path %>
-    <input type="text" class="js-filter" autofocus>
+    <input type="text" class="js-filter">
   </h1>
   <small>Logged in as <%= session[:user]['login'] %>
   | <%= link_to "Recent Updates", "/recent" %>

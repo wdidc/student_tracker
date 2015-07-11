@@ -103,16 +103,25 @@ form{
 
 .student-list > p{
   width:100%;
+  margin:.5em 0;
 }
 
 .summary{
   display:inline-block;
+  cursor: pointer;
   padding:.75em 1em;
   margin-right:.25em;
   margin-top:1em;
+  margin-bottom:.5em;
   text-align:center;
   color:#fff;
-  &.yellow{
+  &.yellow,
+  &.all{
     color:#000;
   }
+}
+
+h1 input{
+  font:inherit;
+  font-size:.6em;
 }
