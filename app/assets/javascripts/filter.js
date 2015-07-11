@@ -27,6 +27,7 @@ var filter = {
 	itemSelector: 'p',
 	layoutMode: 'fitRows'
     })
+    this.iso.$element.isotope({filter: this.filter})
     this.listen()
   }
 }
