@@ -10,18 +10,26 @@ var filter = {
     }.bind(this)
   },
   filter: function(){
-    if(filter.input.value){
+    var value = filter.input.value
+    if(value == "*")
+      value = ""
+    if(value){
       for( var i = 0; i < this.classList.length; i++ ){
         var klass = this.classList[i]
-        if(klass.match(filter.input.value))
+	classValue = value.match(/\./) ? value.substr(1) : value
+        if(klass.match(classValue)){
           return true
+	}
       }
+      if(value.match(/\./))
+	return
       var words = this.querySelector("a").innerText.split(" ")
       for( var i = 0; i < words.length; i++ ){
         var word = words[i]
-	var re = new RegExp(filter.input.value,"i")
-        if(word.match(re))
+	var re = new RegExp(value,"i")
+        if(word.match(re)){
           return true
+	}
       }
     } else {
       return true

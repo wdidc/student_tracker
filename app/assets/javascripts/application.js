@@ -22,22 +22,16 @@ $(function(){
   var list = $(".student-list")
   var summary = $("<div />")
   if(list){
-    summary.append( $("<div class='green summary'>"+green+"</div>") )
-    summary.append( $("<div class='yellow summary'>"+yellow+"</div>") )
-    summary.append( $("<div class='red summary'>"+red+"</div>") )
-    summary.append( $("<div class='all summary'>"+all+"</div>") )
+    summary.append( $("<div data-filter='*' class='all summary'>"+all+"</div>") )
+    summary.append( $("<div data-filter='green' class='green summary'>"+green+"</div>") )
+    summary.append( $("<div data-filter='yellow' class='yellow summary'>"+yellow+"</div>") )
+    summary.append( $("<div data-filter='red' class='red summary'>"+red+"</div>") )
     list.before(summary)
   }
   filter.init()
   $(".summary").on("click", function(event){
-    if($(this).hasClass("red"))  
-      filter.iso.$element.isotope({filter: ".red"})
-    if($(this).hasClass("yellow"))  
-      filter.iso.$element.isotope({filter: ".yellow"})
-    if($(this).hasClass("green"))  
-      filter.iso.$element.isotope({filter: ".green"})
-    if($(this).hasClass("all"))  
-      filter.iso.$element.isotope({filter: "*"})
+      var filterBy = this.getAttribute('data-filter') == "*" ? "*" : "." + this.getAttribute('data-filter') 
+      window.location.hash = "/" + filterBy
   })
 })
 
