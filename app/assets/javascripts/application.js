@@ -24,4 +24,6 @@ $(function(){
     list.prepend( $("<div class='yellow summary'>"+yellow+"</div>") )
     list.prepend( $("<div class='red summary'>"+red+"</div>") )
   }
+  filter.init()
 })
+
