@@ -4,11 +4,14 @@
   <title>StudentTracker</title>
   <meta name="viewport" content="width=device-width; user-scalable=no; initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1><%= link_to "~/", root_path %></h1>
+  <h1>
+    <%= link_to "~/", root_path %>
+    <input type="text" class="js-filter">
+  </h1>
   <small>Logged in as <%= session[:user]['login'] %>
   | <%= link_to "Recent Updates", "/recent" %>
   </small>

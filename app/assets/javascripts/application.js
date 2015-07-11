@@ -12,17 +12,32 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 $(function(){
   var yellow = $(".yellow").length
   var green = $(".green").length
   var red = $(".red").length
+  var all = $(".js-student-list").children().length
   var list = $(".student-list")
+  var summary = $("<div />")
   if(list){
-    list.prepend( $("<div class='green summary'>"+green+"</div>") )
-    list.prepend( $("<div class='yellow summary'>"+yellow+"</div>") )
-    list.prepend( $("<div class='red summary'>"+red+"</div>") )
+    summary.append( $("<div class='green summary'>"+green+"</div>") )
+    summary.append( $("<div class='yellow summary'>"+yellow+"</div>") )
+    summary.append( $("<div class='red summary'>"+red+"</div>") )
+    summary.append( $("<div class='all summary'>"+all+"</div>") )
+    list.before(summary)
   }
+  filter.init()
+  $(".summary").on("click", function(event){
+    if($(this).hasClass("red"))  
+      filter.iso.$element.isotope({filter: ".red"})
+    if($(this).hasClass("yellow"))  
+      filter.iso.$element.isotope({filter: ".yellow"})
+    if($(this).hasClass("green"))  
+      filter.iso.$element.isotope({filter: ".green"})
+    if($(this).hasClass("all"))  
+      filter.iso.$element.isotope({filter: "*"})
+  })
 })
+
