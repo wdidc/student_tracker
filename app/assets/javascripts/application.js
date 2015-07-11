@@ -20,9 +20,9 @@ $(function(){
   var red = $(".red").length
   var list = $(".student-list")
   if(list){
-    list.prepend( $("<div class='green summary'>"+green+"</div>") )
-    list.prepend( $("<div class='yellow summary'>"+yellow+"</div>") )
-    list.prepend( $("<div class='red summary'>"+red+"</div>") )
+    list.before( $("<div class='green summary'>"+green+"</div>") )
+    list.before( $("<div class='yellow summary'>"+yellow+"</div>") )
+    list.before( $("<div class='red summary'>"+red+"</div>") )
   }
   filter.init()
 })

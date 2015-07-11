@@ -15,6 +15,13 @@ var filter = {
         if(klass.match(filter.input.value))
           return true
       }
+      var words = this.querySelector("a").innerText.split(" ")
+      for( var i = 0; i < words.length; i++ ){
+        var word = words[i]
+	var re = new RegExp(filter.input.value,"i")
+        if(word.match(re))
+          return true
+      }
     } else {
       return true
     }
