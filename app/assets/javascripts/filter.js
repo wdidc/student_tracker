@@ -17,7 +17,8 @@ var filter = {
       for( var i = 0; i < this.classList.length; i++ ){
         var klass = this.classList[i]
 	classValue = value.match(/\./) ? value.substr(1) : value
-        if(klass.match(classValue)){
+	var re = new RegExp(classValue,"i")
+        if(klass.match(re)){
           return true
 	}
       }

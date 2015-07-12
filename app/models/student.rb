@@ -1,18 +1,23 @@
 class Student
 
         @@all = JSON.parse(HTTParty.get("http://api.wdidc.org/students").body)
-	attr_accessor :github_id, :name
+	attr_accessor :github_id, :name, :squad
 
 	def initialize(opts={})
 		@name = opts[:name]
 		@github_id = opts[:github_id]
+		@squad = opts[:squad]
 	end
 
 	def self.all
-		all = @@all
-		all.map do |student|
-			Student.new({github_id: student["github_user_id"], name: student["name"]})
-		end
+	  studs = @@all.map do |student|
+	    Student.new({
+	      github_id: student["github_user_id"], 
+	      name: student["name"],
+	      squad: student["squad"].downcase
+	    })
+	  end
+	  studs
 	end
 
 	def self.find(id)
