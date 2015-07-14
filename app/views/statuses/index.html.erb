@@ -9,10 +9,13 @@
 <div class='student-list js-student-list'>
   <% @students.each do |student| %>
     <p class="<%= student.color%> <%= student.squad %>">
-    <a href="/<%= student.github_id %>"><%= student.name %> 
-      <% if student.updated_at %>
-	<small><%= time_ago_in_words(student.updated_at) %> ago</small> 
-      <% end %>
-    </a></p>
+      <a href="/<%= student.github_id %>"><%= student.name %>
+        <% if student.updated_at %>
+  	      <small><%= time_ago_in_words(student.updated_at) %> ago</small>
+        <% end %>
+      </a>
+      <% gh_img = student.color ? "GitHub-Mark-Light-32px" : "GitHub-Mark-32px" %>
+      <%= link_to(image_tag(gh_img, alt: "GH Repos", title: "GH Repos"), student.github_repo_url) %>
+    </p>
   <% end %>
 </div>

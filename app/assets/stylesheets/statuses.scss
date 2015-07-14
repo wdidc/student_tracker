@@ -32,16 +32,20 @@ label{
 
 .student-list{
   font-weight:bold;
+  p {
+    padding: .5em 1em;
+  }
   small{
     font-weight:normal;
     font-size:.7em;
     line-height:1.7em;
     float:right;
   }
-  a{
+  a {
     color:inherit;
-    display:block;
-    padding:.5em 1em;
+  }
+  a img {
+    padding: 0 .5em;
   }
   .red, .yellow, .green {
     a{
