@@ -6,14 +6,14 @@
   var max = d3.max(data,function(d){
     return d.statuses 
   })
+  data.sort(function(a,b){
+    return d3.descending(a.statuses, b.statuses) 
+  })
 
   var scale = d3.scale.linear().domain([0,max]).range([0,100])
   var stats = d3.select(".js-stats")
                 .selectAll("div")
 		.data(data)
-		.sort(function(d){
-		  return d.statuses
-		})
 		.enter()
 		.append("div")
 		.text(function(d){
