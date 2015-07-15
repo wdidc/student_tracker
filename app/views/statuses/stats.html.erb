@@ -1,0 +1,27 @@
+<div class='js-stats stats'>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.js"></script>
+<script>
+  var data = <%= @stats.to_json.html_safe %>
+  var max = d3.max(data,function(d){
+    return d.statuses 
+  })
+
+  var scale = d3.scale.linear().domain([0,max]).range([0,100])
+  var stats = d3.select(".js-stats")
+                .selectAll("div")
+		.data(data)
+		.sort(function(d){
+		  return d.statuses
+		})
+		.enter()
+		.append("div")
+		.text(function(d){
+		  return d.name + " ("+d.statuses+")"
+		})
+		.style("width", function(d){
+		  return scale(d.statuses) + "%"
+		})
+		.style("background", "black")
+		.style("color", "white")
+</script>

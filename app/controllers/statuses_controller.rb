@@ -84,6 +84,21 @@ class StatusesController < ApplicationController
       error json:{error: "not authorized"}
     end
   end
+
+  def stats
+    statuses = Status.all
+    data = {}
+    statuses.each do |status|
+      data[status.author] ||= 0
+      data[status.author] += 1
+    end
+    @stats = []
+    data.each do |datum_key, datum_value|
+      @stats << {name:datum_key,statuses:datum_value}
+    end
+    @stats
+  end
+
   private
   def status_params
     params.require(:status).permit(:color, :body, :github_id)
