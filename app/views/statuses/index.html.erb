@@ -8,7 +8,7 @@
 </div>
 <div class='student-list js-student-list'>
   <% @students.each do |student| %>
-    <p style="background: <%= student.color%>"class="<%= student.squad %>">
+    <p style="background: <%= student.color%>"class="<%= student.squad %> <%= student.category %>">
       <a href="/<%= student.github_id %>"><%= student.name %>
         <% if student.updated_at %>
   	      <small><%= time_ago_in_words(student.updated_at) %> ago</small>

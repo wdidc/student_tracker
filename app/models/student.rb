@@ -1,7 +1,7 @@
 class Student
 
         @@all = JSON.parse(HTTParty.get("http://api.wdidc.org/students").body)
-	attr_accessor :github_id, :github_username, :name, :squad
+	attr_accessor :github_id, :github_username, :name, :squad, :statuses
 
 	def initialize(opts={})
 		@name = opts[:name]
@@ -61,22 +61,43 @@ class Student
     return [(r * 255).to_i, (g * 255).to_i,(b * 255).to_i ]
   end
 
+  # maps overall student progress in a red to green color scheme
 	def color
-	  statuses = Status.where(github_id: self.github_id)
-    red = statuses.where(color: "red").length
-    yellow = statuses.where(color: "yellow").length
-    green = statuses.where(color: "green").length
-    red += yellow/2.0
-    green += yellow/2.0
-    total = green + red
-    green_percent = green/total.to_f
-    hue = green_percent * 1.2 / 360 * 100
+    green_percent = get_green_percent
+    hue = green_percent * 1.2 / 360
     rgb = hsl_to_rgb(hue, 1, 0.5)
     return "rgb(#{rgb[0]}, #{rgb[1]}, #{rgb[2]})"
 	end
 
+  # converts all statuses to a scale of 1 - 100 indicating overall student progress
+  def get_green_percent
+    yellow = statuses.where(color: "yellow").size
+    green = statuses.where(color: "green").size
+    green += yellow/2.0
+    total = statuses.size
+    (green/total.to_f * 100)
+  end
+
+  def category
+    green_percent = get_green_percent
+    if statuses.size >= 1
+      if green_percent.to_i < 33
+        return "red"
+      elsif green_percent.to_i < 66
+        return "yellow"
+      else
+        return "green"
+      end
+    end
+    ""
+  end
+
   def github_repo_url
     "https://github.com/#{github_username}?tab=repositories"
+  end
+
+  def statuses
+    @statuses ||= Status.where(github_id: self.github_id)
   end
 
 	def updated_at
