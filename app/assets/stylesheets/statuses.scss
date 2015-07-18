@@ -46,22 +46,14 @@ label{
     line-height:1.7em;
     float:right;
   }
-  a {
-    color:inherit;
-  }
   a img {
     width: 35px;
     padding: 0 .5em;
     float: right;
   }
-  .red, .yellow, .green {
-    a{
-      color: #fff;
-      text-decoration:none;
-    }
-  }
-  .yellow a{
-    color:inherit;
+  a{
+    color: #fff;
+    text-decoration:none;
   }
 }
 
