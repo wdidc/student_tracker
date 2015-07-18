@@ -1,6 +1,5 @@
 <br>
 <br>
-<%= paginate @statuses %>
 <% @statuses.each do |status| %>
   <div class='status'>
     <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.author %></time>
@@ -11,3 +10,4 @@
     <div class='color <%= status.color%>'></div>
   </div>
 <% end %>
+<%= paginate @statuses %>
