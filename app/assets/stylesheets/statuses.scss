@@ -79,6 +79,11 @@ label{
   position:absolute;
   right:.5em;
   top:.5em;
+  @media all and(max-width:40em){
+    position: static;
+    display:block;
+    margin-bottom:.5em;
+  }
   &, a{
     color: #aaa;
     text-decoration:none;
