@@ -10,7 +10,7 @@
     return d3.descending(a.statuses, b.statuses) 
   })
 
-  var scale = d3.scale.linear().domain([0,max]).range([0,100])
+  var scale = d3.scale.linear().domain([0,max]).range([50,100])
   var stats = d3.select(".js-stats")
                 .selectAll("div")
 		.data(data)
