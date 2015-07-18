@@ -1,6 +1,13 @@
-<%= form_for @status do |f| %>
-  <%= f.hidden_field :github_id, value: @status["github_id"]%>
-  <%= f.text_area :body %>
-  <%= f.select :color, [["red", "red"], ["yellow", "yellow"], ["green","green"]] %>
-  <%= f.submit %>
-<% end %>
+<div class='color-buttons'>
+  <%= form_for @status do |f| %>
+    <%= f.hidden_field :github_id, value: @status["github_id"]%>
+    <%= f.text_area :body %>
+    <%= f.radio_button :color, "red" %>
+    <label class='red' for="status_color_red">Red</label>
+    <%= f.radio_button :color, "yellow" %>
+    <label class='yellow' for="status_color_yellow">Yellow</label>
+    <%= f.radio_button :color, "green" %>
+    <label class='green' for="status_color_green">Green</label>
+    <%= f.submit %>
+  <% end %>
+</div>

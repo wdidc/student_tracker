@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$red:#FF4136;
+$green:#2ECC40;
+$yellow:#FFDC00;
+$blue:#0074D9;
+
 *{
   box-sizing:border-box;
 }
@@ -146,4 +151,41 @@ h1 input{
 .stats > div{
   padding: .5em 1em;
   margin-bottom:.5em;
+}
+
+
+.color-buttons{
+  input[type='radio']{
+    display:none;
+  }
+  label{
+    display:inline-block;
+    padding:.5em;
+    background: #fff;
+    border-radius:3px;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  .red{
+    border: 2px solid $red;
+  }
+  .yellow{
+    border: 2px solid $yellow;
+  }
+  .green{
+    border: 2px solid $green;
+  }
+  :checked + label{
+    color:#fff;
+    &.red{
+      background: $red;
+    }
+    &.yellow{
+      background: $yellow;
+      color:#000;
+    }
+    &.green{
+      background: $green;
+    }
+  }
 }
