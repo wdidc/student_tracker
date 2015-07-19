@@ -159,6 +159,9 @@ h1 input{
   label{
     display:inline-block;
     padding:.5em;
+    @media all and (max-width:40em){
+      padding:.25em .125em;
+    }
     background: #fff;
     border-radius:3px;
     transition: all .2s ease;
