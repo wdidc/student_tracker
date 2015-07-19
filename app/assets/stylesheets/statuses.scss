@@ -173,6 +173,9 @@ h1 input{
   .green{
     border: 2px solid $green;
   }
+  .na{
+    border: 2px solid #000;
+  }
   :checked + label{
     color:#fff;
     &.red{
@@ -184,6 +187,9 @@ h1 input{
     }
     &.green{
       background: $green;
+    }
+    &.na{
+      background: #000;
     }
   }
 }
