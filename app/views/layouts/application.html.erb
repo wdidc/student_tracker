@@ -8,16 +8,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+  <small>Logged in as <%= session[:user]['login'] %>
+  | <%= link_to "Recent Updates", "/recent" %>
+  | <%= link_to "Stats", "/stats" %>
+  </small>
   <h1>
     <%= link_to "~/", root_path %>
     <% if @students %>
       <input type="text" class="js-filter">
     <% end %>
   </h1>
-  <small>Logged in as <%= session[:user]['login'] %>
-  | <%= link_to "Recent Updates", "/recent" %>
-  | <%= link_to "Stats", "/stats" %>
-  </small>
+  </header>
   <%= yield %>
 </body>
 </html>
