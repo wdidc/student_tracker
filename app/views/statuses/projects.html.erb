@@ -1,0 +1,11 @@
+<h2><%= @student["name"] %></h2>
+<%= link_to "&laquo; Back".html_safe, "/#{@student["github_user_id"]}" %>
+<br> <br>
+<%= @assignments[:missing_homeworks] %> missing homeworks.
+
+<% @assignments[:projects].each do |project| %>
+  <div class='project'>
+    <h3><%= project["assignment_title"] %></h3>
+    <%= markdown(project["status"]) %>
+  </div>
+<% end %>

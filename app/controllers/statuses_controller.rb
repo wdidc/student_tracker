@@ -10,6 +10,10 @@ class StatusesController < ApplicationController
     @status.github_id = params[:github_id]
     @student = Student.find(params[:github_id])
   end
+  def projects
+    @assignments = get_assignments
+    @student = Student.find(params[:github_id])
+  end
   def get_attendance
     att = {
       tardies: 0,
@@ -32,10 +36,15 @@ class StatusesController < ApplicationController
   end
   def get_assignments
     ass = {
-      missing_homeworks: 0
+      missing_homeworks: 0,
+      projects: []
     }
     assignments = JSON.parse(HTTParty.get("http://api.wdidc.org/assignments/students/#{params[:github_id]}").body)
     assignments.each do |e|
+      if e["assignment_type"] == "project"
+	ass[:projects] << e
+
+      end
       if e["assignment_type"] == "homework"
 	if !e["status"]
 	  ass[:missing_homeworks] += 1

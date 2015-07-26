@@ -216,3 +216,24 @@ h1 input{
     }
   }
 }
+
+.project{
+  border:2px solid #ccc;
+  padding:1em;
+  margin-top:1em;
+  border-radius:3px;
+}
+
+.project h3{
+  border-bottom:2px solid #ccc;
+  margin-bottom:1em;
+  padding-bottom:.75em;
+}
+
+.project :first-child{
+  margin-top:0;
+}
+.project :last-child{
+  margin-bottom:0;
+}
+

@@ -4,6 +4,7 @@
 <%= @attendance[:presences] %> presences.
 <br>
 <%= @assignments[:missing_homeworks] %> missing homeworks.
+<%= link_to "Projects", "/"+ @student["github_user_id"].to_s + "/projects" %>
 <br><br>
 <%= render 'form' %>
 
