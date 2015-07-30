@@ -39,7 +39,7 @@ class StatusesController < ApplicationController
       missing_homeworks: 0,
       projects: []
     }
-    token = session[:access_token]
+    token = session[:token]
     assignments = JSON.parse(HTTParty.get("http://assignments.wdidc.org/students/#{params[:github_id]}/submissions.json?access_token=#{token}").body)
     assignments.each do |e|
       if e["assignment_type"] == "project"
