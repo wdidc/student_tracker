@@ -20,7 +20,7 @@ class StatusesController < ApplicationController
       absences: 0,
       presences: 0
     }
-    attendance = JSON.parse(HTTParty.get("http://api.wdidc.org/attendance/students/#{params[:github_id]}").body)
+    attendance = JSON.parse(HTTParty.get("http://api.wdidc.org/attendance/students/#{params[:github_id]}?access_token=").body)
     attendance.each do |e|
      if e["status"] == "tardy"
        att[:tardies] += 1
@@ -39,7 +39,8 @@ class StatusesController < ApplicationController
       missing_homeworks: 0,
       projects: []
     }
-    assignments = JSON.parse(HTTParty.get("http://api.wdidc.org/assignments/students/#{params[:github_id]}").body)
+    token = session[:access_token]
+    assignments = JSON.parse(HTTParty.get("http://assignments.wdidc.org/students/#{params[:github_id]}/submissions.json?access_token=#{token}").body)
     assignments.each do |e|
       if e["assignment_type"] == "project"
 	ass[:projects] << e
