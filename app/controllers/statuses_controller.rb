@@ -59,7 +59,7 @@ class StatusesController < ApplicationController
     @student = JSON.parse(HTTParty.get("http://api.wdidc.org/students/#{@status.github_id}").body)
   end
   def create
-    @status = Status.new(status_params.merge(author: session[:user]["name"]))
+    @status = Status.new(status_params.merge(user: current_user))
     if @status.save
       redirect_to "/#{@status.github_id}"
     end
@@ -68,7 +68,7 @@ class StatusesController < ApplicationController
   def update
     @status = Status.find(params[:id])
     # need to be able to query for status you're updating
-    @status.update(status_params.merge(author: session[:user]["name"]))
+    @status.update(status_params.merge(user: current_user))
     if @status.save
       redirect_to "/#{@status.github_id}"
     end
@@ -88,10 +88,12 @@ class StatusesController < ApplicationController
   def authenticate
     token = request.env['omniauth.auth'][:credentials][:token]
     session[:token] = token
-    if authorize
+    @user = User.from_auth(request.env['omniauth.auth'])
+    if @user.is_an_instructor? token
+      session[:uid] = @user.uid
       redirect_to root_path
     else
-      error json:{error: "not authorized"}
+      render json:{error: "not authorized"}
     end
   end
 
