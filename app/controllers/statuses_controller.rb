@@ -87,10 +87,10 @@ class StatusesController < ApplicationController
 
   def authenticate
     token = request.env['omniauth.auth'][:credentials][:token]
-    @user = User.from_auth(request.env['omniauth.auth'])
     session[:token] = token
-    session[:uid] = @user.uid
-    if authorize
+    @user = User.from_auth(request.env['omniauth.auth'])
+    if @user.is_an_instructor? token
+      session[:uid] = @user.uid
       redirect_to root_path
     else
       render json:{error: "not authorized"}

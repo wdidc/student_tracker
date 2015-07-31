@@ -3,10 +3,13 @@ class User < ActiveRecord::Base
 
   def is_an_instructor? token
     instructors = HTTParty.get("https://api.github.com/teams/1511667/members?access_token=#{token}")
-    instructors.each do |instructor|
-      if self.uid.to_i == instructor["id"].to_i
-	return true
+    begin
+      instructors.each do |instructor|
+	if self.uid.to_i == instructor["id"].to_i
+	  return true
+	end
       end
+    rescue
     end
     return false
   end
@@ -18,7 +21,7 @@ class User < ActiveRecord::Base
     token = auth_hash[:credentials][:token]
     if user.is_an_instructor? token
       user.save
-      user
     end
+    user
   end
 end
