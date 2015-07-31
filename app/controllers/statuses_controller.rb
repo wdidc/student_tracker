@@ -89,6 +89,7 @@ class StatusesController < ApplicationController
     token = request.env['omniauth.auth'][:credentials][:token]
     @user = User.from_auth(request.env['omniauth.auth'])
     session[:token] = token
+    session[:uid] = @user.uid
     if authorize
       redirect_to root_path
     else
