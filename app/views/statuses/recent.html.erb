@@ -2,7 +2,7 @@
 <br>
 <% @statuses.each do |status| %>
   <div class='status'>
-    <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.author %></time>
+    <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.user.name %></time>
     <small>
       <strong><%= link_to status.student["name"], "/#{status.student['github_user_id']}" %></strong>
     </small>
