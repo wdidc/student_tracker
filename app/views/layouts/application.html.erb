@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-  <small>Logged in as <%= session[:user]['login'] %>
+  <small>Logged in as <%= current_user.name %>
   | <%= link_to "Recent Updates", "/recent" %>
   | <%= link_to "Stats", "/stats" %>
   </small>
