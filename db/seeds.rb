@@ -1,5 +1,8 @@
-Status.destroy_all
+User.destroy_all
 
-Status.create(color: "red", github_id: 13137527, body: "This person is doing not great" )
-Status.create(color: "yellow", github_id: 10967783, body: "Still working on being better" )
-Status.create(color: "green", github_id: 12025195, body: "Amazing student" )
+token = ENV['token']
+instructors = JSON.parse(HTTParty.get("https://api.github.com/teams/1511667/members?access_token=#{token}").body)
+instructors.each do |inst|
+  ins = JSON.parse(HTTParty.get(inst["url"]).body)
+  User.create(uid: ins["id"], provider: "github", name: ins["name"], avatar_url: ins["avatar_url"])
+end
