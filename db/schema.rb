@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731022929) do
+ActiveRecord::Schema.define(version: 20150731234558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "creator"
+    t.integer  "receiver"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "statuses", force: :cascade do |t|
     t.string   "color"
@@ -34,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150731022929) do
     t.string "uid"
     t.string "name"
     t.string "avatar_url"
+    t.string "login"
   end
 
   add_foreign_key "statuses", "users"
