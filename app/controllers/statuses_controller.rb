@@ -101,8 +101,8 @@ class StatusesController < ApplicationController
     statuses = Status.all
     data = {}
     statuses.each do |status|
-      data[status.author] ||= 0
-      data[status.author] += 1
+      data[status.user.name] ||= 0
+      data[status.user.name] += 1
     end
     @stats = []
     data.each do |datum_key, datum_value|
