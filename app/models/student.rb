@@ -74,7 +74,7 @@ class Student
     yellow = statuses.where(color: "yellow").size
     green = statuses.where(color: "green").size
     green += yellow/2.0
-    total = statuses.size
+    total = statuses.where(color:["yellow","green","red"]).size
     (green/total.to_f * 100)
   end
 
