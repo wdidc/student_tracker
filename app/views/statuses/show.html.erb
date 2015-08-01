@@ -1,10 +1,10 @@
-<h2><%= @student["name"] %></h2>
+<h2 style="border-bottom: 5px solid <%= @student.color %> "><%= @student.name %></h2>
 <%= @attendance[:tardies] %> tardies.
 <%= @attendance[:absences] %> absences.
 <%= @attendance[:presences] %> presences.
 <br>
 <%= @assignments[:missing_homeworks] %> missing homeworks.
-<%= link_to "Projects", "/"+ @student["github_user_id"].to_s + "/projects" %>
+<%= link_to "Projects", "/"+ @student.github_id.to_s + "/projects" %>
 <br><br>
 <%= render 'form' %>
 

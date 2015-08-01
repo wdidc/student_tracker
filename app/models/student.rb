@@ -14,7 +14,7 @@ class Student
 	  studs = @@all.map do |student|
 	    Student.new({
 	      github_id: student["github_user_id"],
-        github_username: student["github_username"],
+	      github_username: student["github_username"],
 	      name: student["name"],
 	      squad: student["squad"].downcase
 	    })
@@ -23,8 +23,14 @@ class Student
 	end
 
 	def self.find(id)
-		students = @@all
-		student = students.find{|student|student["github_user_id"] == id.to_i}
+	  students = @@all
+	  student = students.find{|student|student["github_user_id"] == id.to_i}
+	  Student.new({
+	    github_id: student["github_user_id"],
+	    github_username: student["github_username"],
+	    name: student["name"],
+	    squad: student["squad"].downcase
+	  })
 	end
 
   def hue_to_rgb(p,q,t)

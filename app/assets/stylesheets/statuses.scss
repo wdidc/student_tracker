@@ -24,6 +24,19 @@ body{
   margin:auto;
 }
 
+body.grayscale{
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  .status .color{
+    display:none;
+  }
+}
+
+.toggle-grayscale{
+  text-decoration:none;
+  float:right;
+}
+
 header{
   padding-top:1em;
   @media all and(max-width:40em){

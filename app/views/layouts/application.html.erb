@@ -11,6 +11,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <a href='#' class='toggle-grayscale js-toggle-grayscale'>&#9728;</a>
   <header>
   <small>Logged in as <%= current_user.name %>
   | <%= link_to "Recent", "/recent" %>

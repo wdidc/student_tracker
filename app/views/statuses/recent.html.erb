@@ -4,7 +4,7 @@
   <div class='status'>
     <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.user.name %></time>
     <small>
-      <strong><%= link_to status.student["name"], "/#{status.student['github_user_id']}" %></strong>
+      <strong><%= link_to status.student.name, "/#{status.student.github_id}" %></strong>
     </small>
     <p><%= markdown(status.body) %> </p>
     <div class='color <%= status.color%>'></div>

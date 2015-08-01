@@ -18,3 +18,7 @@ img{
   max-width:100%;
 }
 
+body.grayscale{
+  filter: grayscale(100%)
+}
+
