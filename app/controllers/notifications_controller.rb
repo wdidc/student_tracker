@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.where(receiver: current_user)
+    @notifications = Notification.where(receiver: current_user).order(created_at: :desc)
   end
   def update
     @notification = Notification.find(params[:id])

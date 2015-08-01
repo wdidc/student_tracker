@@ -9,7 +9,7 @@
 <%= render 'form' %>
 
 <% @statuses.each do |status| %>
-  <div class='status'>
+  <div class='status' id="s<%=status.id%>">
     <% if status.user %>
       <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.user.name %></time>
     <% end %>

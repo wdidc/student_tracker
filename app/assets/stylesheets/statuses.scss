@@ -13,7 +13,7 @@ $blue:#0074D9;
 
 body{
   max-width:40em;
-  padding:0em 1em;
+  padding:0em 1em 2em 1em;
   font-family: 'Helvetica Neue', sans-serif;
   margin:auto;
 }
@@ -289,4 +289,26 @@ h1 input{
 blockquote{
   border-left:3px solid #ccc;
   padding-left:.5em;
+}
+
+:target{
+  animation: target 1s linear;
+  -webkit-animation: target 1s linear;
+}
+
+@-webkit-keyframes target{
+  0%{
+    background: $yellow;
+  }
+  100%{
+    background: #fff;
+  }
+}
+@keyframes target{
+  0%{
+    background: $yellow;
+  }
+  100%{
+    background: #fff;
+  }
 }
