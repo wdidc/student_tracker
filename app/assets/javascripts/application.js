@@ -53,10 +53,11 @@ $(function(){
     var $form = $(this).closest("form")
     var url = $form.attr("action")
     var isRead = $form.find("#notification_read").is(':checked')
-    $(".meta").attr("data-read", isRead)
-    var count = $(".notification-count").attr("data-notifications-count")
+    $(this).closest("[data-read]").attr("data-read", isRead)
+    var count = parseInt($(".notification-count").attr("data-notifications-count"))
     isRead ? count-- : count++
-    $(".notification-count").attr("data-notifications-count", count)
+    console.log(count)
+    $(".notification-count").attr("data-notifications-count", count).html(count)
     $.ajax({
       url: url,
       dataType: "json",
@@ -67,7 +68,6 @@ $(function(){
 	}
       },
       success: function( response ){
-        console.log(response)
       }
     })
   })

@@ -241,6 +241,7 @@ h1 input{
   border: 1px solid #ccc;
   border-radius:3px;
   padding:1em;
+  margin:1em 0 0 0;
   &[data-read="true"]{
     opacity:.5;
   }
