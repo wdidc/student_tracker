@@ -237,3 +237,22 @@ h1 input{
   margin-bottom:0;
 }
 
+.notification-link{
+  position:relative;
+  display:inline-block;
+}
+
+.notification-count{
+  background: $red;
+  color:#fff;
+  font-size:.5em;
+  display:inline-block;
+  width:1.5em;
+  height:1.5em;
+  text-align:center;
+  line-height:1.5em;
+  border-radius:100%;
+  position:absolute;
+  right:-1.25em;
+  top:-.5em;
+}

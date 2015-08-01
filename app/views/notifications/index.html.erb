@@ -1,0 +1,6 @@
+<% @notifications.each do |notification| %>
+  <div class="notification">
+    <small><%= time_ago_in_words(notification.created_at) %> ago.</small><br>
+    <%= notification.body %>
+  </div>
+<% end %>

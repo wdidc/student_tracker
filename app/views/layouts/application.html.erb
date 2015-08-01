@@ -10,7 +10,13 @@
 <body>
   <header>
   <small>Logged in as <%= current_user.name %>
-  | <%= link_to "Recent Updates", "/recent" %>
+  | <%= link_to "Recent", "/recent" %>
+  | <a href='<%= notifications_path %>' class='notification-link'>
+      Notifications
+      <% if @notifications.count != 0 %>
+	<span class='notification-count'><%= @notifications.count %></span>
+      <% end %>
+    </a>
   | <%= link_to "Stats", "/stats" %>
   </small>
   <h1>
