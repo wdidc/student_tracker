@@ -13,9 +13,7 @@
   | <%= link_to "Recent", "/recent" %>
   | <a href='<%= notifications_path %>' class='notification-link'>
       Notifications
-      <% if @notifications.count != 0 %>
-	<span class='notification-count'><%= @notifications.count %></span>
-      <% end %>
+	<span data-notifications-count="<%= @notifications_count %>" class='notification-count'><%= @notifications_count %></span>
     </a>
   | <%= link_to "Stats", "/stats" %>
   </small>

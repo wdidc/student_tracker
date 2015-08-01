@@ -1,6 +1,12 @@
 <% @notifications.each do |notification| %>
-  <div class="notification">
-    <small><%= time_ago_in_words(notification.created_at) %> ago.</small><br>
+  <div class="notification" data-read=<%= notification.read %>>
+    <div class='meta'>
+      <small><%= time_ago_in_words(notification.created_at) %> ago.</small>
+      <%= form_for notification do |f| %>
+	<label for="notification_read">Mark Read</label>
+	<%= f.check_box :read %>
+      <% end %>
+    </div>
     <%= notification.body %>
   </div>
 <% end %>

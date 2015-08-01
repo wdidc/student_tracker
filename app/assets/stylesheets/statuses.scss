@@ -237,6 +237,27 @@ h1 input{
   margin-bottom:0;
 }
 
+.notification{
+  border: 1px solid #ccc;
+  border-radius:3px;
+  padding:1em;
+  &[data-read="true"]{
+    opacity:.5;
+  }
+  .meta{
+    background:#eee;
+    margin: -1em -1em 1em -1em;
+    padding:.5em 1em .5em 1em;
+    form{
+      margin:0;
+      float:right;
+    }
+  }
+  label{
+    display:inline-block;
+  }
+}
+
 .notification-link{
   position:relative;
   display:inline-block;
@@ -255,4 +276,8 @@ h1 input{
   position:absolute;
   right:-1.25em;
   top:-.5em;
+  &[data-notifications-count="0"]{
+    display:none;
+  }
 }
+

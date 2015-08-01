@@ -38,8 +38,10 @@ var filter = {
   },
   init: function(){
     this.input = document.querySelector(".js-filter")
-    this.input.value = window.location.hash.substr(2)
-    this.input.setSelectionRange(1000,1000)
+    if(this.input){
+      this.input.value = window.location.hash.substr(2)
+      this.input.setSelectionRange(1000,1000)
+    }
     var container = document.querySelector(".js-student-list")
     if(container){
       this.iso = new Isotope( '.js-student-list', {

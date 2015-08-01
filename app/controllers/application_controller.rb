@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
     end
   end
   def layout
-    @notifications = Notification.where(receiver: current_user)
+    @notifications_count = Notification.where(receiver: current_user, read: [false,nil]).count
   end
 end
