@@ -3,7 +3,7 @@
     <div class='meta'>
       <small><%= time_ago_in_words(notification.created_at) %> ago.</small>
       <%= form_for notification do |f| %>
-	<label>Mark Read
+	<label title="Mark as read"> &#10004;
 	<%= f.check_box :read %>
 	</label>
       <% end %>

@@ -255,7 +255,11 @@ h1 input{
     }
   }
   label{
+    cursor:pointer;
     display:inline-block;
+  }
+  label > input {
+    display:none;
   }
 }
 
