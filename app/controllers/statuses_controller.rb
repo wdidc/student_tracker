@@ -78,7 +78,7 @@ class StatusesController < ApplicationController
     @status = Status.find(params[:id])
     # need to be able to query for status you're deletings
     gh = @status.github_id
-    @status.destroy
+    @status.destroy if @status.user == current_user
     redirect_to "/#{gh}"
   end
   def recent

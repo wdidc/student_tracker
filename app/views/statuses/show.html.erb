@@ -13,10 +13,12 @@
     <% if status.user %>
       <time><%= time_ago_in_words(status.created_at) %> ago by <%= status.user.name %></time>
     <% end %>
-    <small>
-      <%= link_to 'edit', edit_status_path(status) %> |
-      <%= link_to 'delete', status_path(status), method: :delete %>
-    </small>
+    <% if status.user == current_user %>
+      <small>
+	<%= link_to 'edit', edit_status_path(status) %> |
+	<%= link_to 'delete', status_path(status), method: :delete %>
+      </small>
+    <% end %>
     <p><%= markdown(status.body) %> </p>
     <div class='color <%= status.color%>'></div>
   </div>

@@ -522,7 +522,7 @@
                 initTextarea();
                 initAutocomplete();
                 initMentionsOverlay();
-                resetInput(settings.defaultValue);
+                //resetInput(settings.defaultValue);
 
                 //If the autocomplete list has prefill mentions
                 if( settings.prefillMention ) {
