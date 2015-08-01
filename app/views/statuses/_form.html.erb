@@ -1,7 +1,7 @@
 <div class='color-buttons'>
   <%= form_for @status do |f| %>
     <%= f.hidden_field :github_id, value: @status["github_id"]%>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, class: "mention" %>
     <%= f.radio_button :color, "red" %>
     <label class='red' for="status_color_red">Red</label>
     <%= f.radio_button :color, "yellow" %>
