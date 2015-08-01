@@ -1,7 +1,7 @@
-token = ENV['token']
-instructors = JSON.parse(HTTParty.get("https://api.github.com/teams/1511667/members?access_token=#{token}").body)
-instructors.each do |inst|
-  ins = JSON.parse(HTTParty.get(inst["url"]).body)
-  u = User.find_by(uid: ins["id"])
-  u.update(login: ins["login"])
-end
+u = User.find_by(login:"jshawl")
+u2 = User.find_by(login:"adambray")
+
+Notification.destroy_all
+Notification.create([
+  {creator: u2, receiver: u, body:"this is the body"}
+])

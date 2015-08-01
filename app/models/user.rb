@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :statuses
+  has_many :notifications
 
   def is_an_instructor? token
     instructors = HTTParty.get("https://api.github.com/teams/1511667/members?access_token=#{token}")
