@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: "statuses#authenticate"
   get '/stats', to: "statuses#stats"
   get "/recent", to: "statuses#recent"
+  get "/groups", to: "statuses#groups"
   resources :statuses
   resources :users, only: [:index]
   resources :notifications

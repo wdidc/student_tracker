@@ -1,0 +1,10 @@
+<% @groups.each do |i,g| %>
+  <div>
+    <h2><%= i.inspect %></h2>
+    <ul>
+      <% g.shuffle.each do |student|%>
+	<li><%= student.name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
