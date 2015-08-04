@@ -111,6 +111,21 @@ class StatusesController < ApplicationController
     @stats
   end
 
+  def groups
+    @num = 13
+    @students = Student.all_by_color
+    @groups = {}
+    @num.times do |i|
+      @groups[i] = []
+    end
+    cur = 0
+    @students.each_with_index do |student, index|
+      @groups[cur] << student
+      cur += 1
+      cur = 0 if cur == @num
+    end
+  end
+
   private
   def status_params
     params.require(:status).permit(:color, :body, :github_id)

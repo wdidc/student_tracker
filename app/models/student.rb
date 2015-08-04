@@ -102,6 +102,13 @@ class Student
     "https://github.com/#{github_username}?tab=repositories"
   end
 
+  def self.all_by_color
+    colors = ["red","yellow","green"]
+    Student.all.sort do  |x, y| 
+      colors.index(x.category) <=> colors.index(y.category) 
+    end
+  end
+
   def statuses
     @statuses ||= Status.where(github_id: self.github_id)
   end
