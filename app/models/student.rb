@@ -103,9 +103,8 @@ class Student
   end
 
   def self.all_by_color
-    colors = ["red","yellow","green"]
     Student.all.sort do  |x, y| 
-      colors.index(x.category) <=> colors.index(y.category) 
+      x.get_green_percent <=> y.get_green_percent
     end
   end
 

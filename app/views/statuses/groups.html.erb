@@ -1,10 +1,5 @@
-<% @groups.each do |i,g| %>
+<% @students.each_with_index do |student,index| %>
   <div>
-    <h2><%= i.inspect %></h2>
-    <ul>
-      <% g.shuffle.each do |student|%>
-	<li><%= student.name %></li>
-      <% end %>
-    </ul>
+    <h2><%=  student.name + " #{student.get_green_percent.round(2)}% " %></h2>
   </div>
 <% end %>
