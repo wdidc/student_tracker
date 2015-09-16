@@ -1,7 +1,7 @@
 class Student
 
-        @@all = JSON.parse(HTTParty.get("http://api.wdidc.org/students").body)
-	attr_accessor :github_id, :github_username, :name, :squad, :statuses
+  @@all = JSON.parse(HTTParty.get("http://api.wdidc.org/students").body)
+	attr_accessor :github_id, :github_username, :name, :squad, :statuses, :tardies, :absences, :absences_total
 
 	def initialize(opts={})
 		@name = opts[:name]
@@ -103,7 +103,7 @@ class Student
   end
 
   def self.all_by_color
-    Student.all.sort do  |x, y| 
+    Student.all.sort do  |x, y|
       x.get_green_percent <=> y.get_green_percent
     end
   end
@@ -118,4 +118,59 @@ class Student
 	    return status.updated_at
 	  end
 	end
+
+  #####################################################################################
+
+  def get_attendance
+    att = {
+      tardies: 0,
+      absences: 0,
+      presences: 0,
+      total: 0
+    }
+    attendance = JSON.parse(HTTParty.get("http://api.wdidc.org/attendance/students/#{self.github_id}?access_token=").body)
+    attendance.each do |e|
+     if e["status"] == "tardy"
+       att[:tardies] += 1
+     end
+     if e["status"] == "absent"
+       att[:absences] += 1
+     end
+     if e["status"] == "present"
+       att[:presences] += 1
+     end
+    end
+    self.absences = att[:absences]
+    self.tardies = att[:tardies]
+    self.absences_total = att[:absences] + ( att[:tardies] / 4.to_f )
+    att
+  end
+  def get_absences
+
+  end
+  def get_assignments (token_arg)
+    ass = {
+      missing_homeworks: 0,
+      total_homeworks: 0,
+      projects: []
+    }
+    token = token_arg
+    assignments = JSON.parse(HTTParty.get("http://assignments.wdidc.org/students/#{ self.github_id }/submissions.json?access_token=#{token}").body)
+    assignments.each do |e|
+      if e["assignment_type"] == "project"
+	      ass[:projects] << e
+      end
+      if e["assignment_type"] == "homework"
+      	ass[:total_homeworks] += 1
+        if !e["status"]
+      	  ass[:missing_homeworks] += 1
+      	end
+      end
+    end
+    ass
+  end
+  def get_assignments_percentage(token_arg)
+    assignment_obj = self.get_assignments(token_arg)
+    percentage = ((assignment_obj[:missing_homeworks].to_f / assignment_obj[:total_homeworks]) * 100).to_i
+  end
 end
