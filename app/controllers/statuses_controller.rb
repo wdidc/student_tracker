@@ -1,71 +1,16 @@
 class StatusesController < ApplicationController
   def index
     @students = Student.all
-    puts session[:token]
   end
   def show
     @student = Student.find(params[:github_id])
     @statuses = Status.where(github_id: params[:github_id]).order(:created_at).reverse
-    @attendance = @student.get_attendance
-    @assignments = @student.get_assignments
     @status = Status.new
     @status.github_id = params[:github_id]
   end
   def projects
     @assignments = get_assignments
     @student = Student.find(params[:github_id])
-  end
-  def get_attendance( github_id )
-    att = {
-      tardies: 0,
-      absences: 0,
-      presences: 0,
-      total: 0
-    }
-    attendance = JSON.parse(HTTParty.get("http://api.wdidc.org/attendance/students/#{github_id}?access_token=").body)
-    attendance.each do |e|
-     if e["status"] == "tardy"
-       att[:tardies] += 1
-     end
-     if e["status"] == "absent"
-       att[:absences] += 1
-     end
-     if e["status"] == "present"
-       att[:presences] += 1
-     end
-    end
-    att[:total] = att[:absences] + att[:presences]
-    att[:absences] += ( att[:tardies] / 4 )
-    att
-  end
-  def get_attendance_percentage( github_id )
-    attendance_obj = self.get_attendance
-    percentage = attendance_obj[:presences] / attendance_obj[:total].to_f
-    percentage = ( percentage * 100 ).to_i
-
-  end
-  def get_assignments( github_id )
-    ass = {
-      missing_homeworks: 0,
-      projects: []
-    }
-    token = session[:token]
-    assignments = JSON.parse(HTTParty.get("http://assignments.wdidc.org/students/#{ github_id }/submissions.json?access_token=#{token}").body)
-    assignments.each do |e|
-      if e["assignment_type"] == "project"
-	ass[:projects] << e
-
-      end
-      if e["assignment_type"] == "homework"
-	if !e["status"]
-	  ass[:missing_homeworks] += 1
-	end
-      end
-    end
-    ass
-  end
-  def get_assignments_percentage( github_id )
-    # Use get_assignments to generate %
   end
   def edit
     @status = Status.find(params[:id])
